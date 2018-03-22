@@ -2,7 +2,7 @@
 
 > Practice App
 
-Código fuente de prueba en VCB, demoré alrededor de 4 hrs haciendola.
+Práctica de VUE
 
 ## Build Setup
 
