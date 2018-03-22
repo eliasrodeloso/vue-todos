@@ -1,5 +1,5 @@
 <template>
-  <div class="todo">
+  <div class="todo" :class="{'todo--completed': completed}">
     <div :class="cls">
       <i v-if="todo.completed" class="mdi mdi-checkbox-marked-circle-outline mdi-30px"></i>
       <i v-else class="mdi mdi-close-circle-outline mdi-30px"></i>
@@ -11,7 +11,7 @@
       <span @click="removeTodo" class="todo__option todo__option--delete">
         <i class="mdi mdi-delete mdi-30px"></i>
       </span>
-      <span @click="markReady" class="todo__option todo__option--complete">
+      <span @click="markReady" :class="{'todo__option--disabled': readyDisabled}" class="todo__option todo__option--complete">
         <i class="mdi mdi-check-circle-outline mdi-30px"></i>
       </span>
     </div>
@@ -27,6 +27,12 @@ export default {
       required: true
     }
   },
+  data() {
+    return {
+      readyDisabled: false,
+      completed: false
+    }
+  },
   computed: {
     cls() {
       return {
@@ -38,7 +44,11 @@ export default {
   },
   methods: {
     markReady() {
-      this.$store.dispatch('completeTodo', this.todo)
+      if (!this.readyDisabled) {
+        this.$store.dispatch('completeTodo', this.todo)
+        this.readyDisabled = this.todo.completed
+        this.completed = this.todo.completed
+      }
     },
     removeTodo() {
       this.$store.dispatch('removeTodo', this.todo)
@@ -56,6 +66,9 @@ export default {
     justify-content: flex-start
     align-items: center
     border-bottom: 1px solid rgba(0, 0, 0, 0.2)
+
+    &--completed
+      background-color: rgba(0, 122, 22, 0.25)
 
     &:first-of-type
       border-top: 1px solid rgba(0, 0, 0, 0.2)
@@ -93,5 +106,10 @@ export default {
       
         &:hover
           color: rgb(0, 122, 22)
+      
+      &--disabled
+        cursor: not-allowed
+        pointer-events: none;
+        color: rgba(200, 200, 200, 0.8)
 </style>
 
