@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import uuid from 'uuid/v4'
 
 Vue.use(Vuex)
 
@@ -10,6 +11,7 @@ export default new Vuex.Store({
   mutations: {
     ADD_TODO(state, payload) {
       state.todos.push({
+        id: uuid(),
         name: payload,
         completed: false
       })
@@ -17,7 +19,7 @@ export default new Vuex.Store({
     EDIT_TODO(state, payload) {
       let { todos } = state
       todos.map((todo, index) => {
-        if (JSON.stringify(payload.prevTodo) === JSON.stringify(todo)) {
+        if (payload.prevTodo.id === todo.id) {
           // Set reactivy to the next object
           Vue.set(todos, index, payload.nextTodo)
         }
