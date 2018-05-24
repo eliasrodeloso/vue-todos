@@ -38,6 +38,9 @@ export default new Vuex.Store({
       } else {
         state.todos[i].completed = true
       }
+    },
+    SET_TODOS(state, payload) {
+      state.todos = payload
     }
   },
   actions: {
@@ -52,6 +55,9 @@ export default new Vuex.Store({
     },
     completeTodo({ commit }, payload) {
       commit('COMPLETE_TODO', payload)
+    },
+    setTodos({ commit }, payload) {
+      commit('SET_TODOS', payload)
     }
   },
   getters: {

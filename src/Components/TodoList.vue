@@ -17,6 +17,11 @@ export default {
   },
   computed: {
     ...mapGetters(['todos'])
+  },
+  watch: {
+    todos() {
+      localStorage.setItem(this.$localStorageKey, JSON.stringify(this.todos))
+    }
   }
 }
 </script>

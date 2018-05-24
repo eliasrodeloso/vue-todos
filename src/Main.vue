@@ -15,6 +15,12 @@ export default {
   components: {
     AddTodo,
     ListTodo
+  },
+  mounted() {
+    let localTodos = localStorage.getItem(this.$localStorageKey)
+    if (localTodos) {
+      this.$store.dispatch('setTodos', JSON.parse(localTodos))
+    }
   }
 }
 </script>
