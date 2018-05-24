@@ -4,7 +4,7 @@ import store from './store'
 
 Vue.prototype.$localStorageKey = 'LOCAL_STORAGE_KEY'
 
-/* eslint-disable no-new */
+/* eslint-disable-next-line no-new */
 new Vue({
   el: '#app',
   store,
