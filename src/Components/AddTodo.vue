@@ -2,7 +2,7 @@
   <div class="todo__add">
     <div class="text__todo">
       <label for="todo">Add Todo</label>
-      <input @keyup.enter="addTodo" v-model="todo" type="text" name="todo" id="todo">
+      <input @keypress.enter.exact="addTodo" v-model="todo" type="text" name="todo" id="todo">
     </div>
     <input class="button__todo" type="button" value="add" @click="addTodo">
   </div>
@@ -13,7 +13,7 @@ export default {
   name: 'AddTodo',
   data() {
     return {
-      todo: ''
+      todo: '' || this.$store.getters.toEditTodo
     }
   },
   methods: {

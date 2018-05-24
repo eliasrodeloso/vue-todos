@@ -5,8 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    todos: [],
-    newTodo: ''
+    todos: []
   },
   mutations: {
     ADD_TODO(state, payload) {
@@ -17,9 +16,13 @@ export default new Vuex.Store({
     },
     EDIT_TODO(state, payload) {
       let { todos } = state
-      todos.splice(todos.indexOf(payload), 1)
+      todos.map((todo, index) => {
+        if (JSON.stringify(payload.prevTodo) === JSON.stringify(todo)) {
+          // Set reactivy to the next object
+          Vue.set(todos, index, payload.nextTodo)
+        }
+      })
       state.todos = todos
-      state.newTodo = todo.body
     },
     REMOVE_TODO(state, todo) {
       let todos = state.todos

@@ -28,6 +28,9 @@ export default {
     color: #2c3e50
     margin-top: 60px
 
+    *, *::after, *::before
+      box-sizing: border-box
+
   h1, h2
     font-weight: normal
     text-transform: uppercase
