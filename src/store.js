@@ -33,7 +33,11 @@ export default new Vuex.Store({
     },
     COMPLETE_TODO(state, payload) {
       let i = state.todos.indexOf(payload)
-      state.todos[i].completed = true
+      if (state.todos[i].completed) {
+        state.todos[i].completed = false
+      } else {
+        state.todos[i].completed = true
+      }
     }
   },
   actions: {

@@ -2,7 +2,7 @@
   <div class="todo" >
     <div class="todo__status">
       <span @click="markReady" 
-            :class="{'todo__option--disabled': completed}" 
+            :class="{'todo__option--completed': completed}" 
             class="todo__option todo__option--complete">
         <i class="mdi mdi-check-circle-outline mdi-30px"></i>
       </span>
@@ -13,7 +13,7 @@
         class="todo__edit" 
         v-if="editing" 
         @keypress.enter.exact="saveEdit" 
-        @keypress.esc.exact="cancelEdit"
+        @blur="saveEdit"
         v-model="editingTodo" 
         name="editTodo" 
         id="editTodo"
@@ -62,10 +62,8 @@ export default {
   },
   methods: {
     markReady() {
-      if (!this.completed) {
-        this.$store.dispatch('completeTodo', this.todo)
-        this.completed = true
-      }
+      this.$store.dispatch('completeTodo', this.todo)
+      this.completed = !this.completed
     },
     removeTodo() {
       this.$store.dispatch('removeTodo', this.todo)
@@ -88,6 +86,11 @@ export default {
     },
     cancelEdit() {
       this.editing = false
+    }
+  },
+  updated() {
+    if (this.$el.querySelectorAll('input').length !== 0) {
+      this.$el.querySelectorAll('input')[0].focus()
     }
   }
 }
@@ -114,7 +117,7 @@ export default {
       margin-right: 1rem
 
     &__name
-      padding: 0.5rem 0.25rem
+      padding: 0.5rem 0.5rem
       font-size: 1.5rem
       width: 70%
       word-wrap: break-word
@@ -123,8 +126,6 @@ export default {
         transition: 0.2s all linear
 
       &--editing
-        border-left: 1px solid rgba(55, 55, 55, 0.25)
-        border-right: 1px solid rgba(55, 55, 55, 0.25)
         padding: 0
     
     &__options
@@ -146,26 +147,26 @@ export default {
       
       &--complete
         color: rgba(#2c3e50, 0.25)
+
+      &--completed
+        color: rgb(0, 122, 22)
       
       &--disabled
         cursor: not-allowed
         pointer-events: none
         color: rgba(200, 200, 200, 0.8)
-
-        &.todo__option--complete
-          color: rgb(0, 122, 22)
     
     &__edit
       display: block
       border: 0
       font-size: 1em
-      padding: 0.5rem 0.25rem
+      padding: 0.5rem 0.5rem
       width: 100%
       font-family: 'Avenir'
       color: #2c3e50
 
       &:active, &:focus
-        outline: 0
+        outline: 2px solid #2c3e50
 
 </style>
 
