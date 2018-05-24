@@ -47,7 +47,7 @@ export default {
         display: block
         font-size: 0.9rem
         padding-left: 0.5rem
-        
+
       input[type="text"]
         display: blocK
         width: 100%
@@ -60,7 +60,7 @@ export default {
           outline: 0
           border-bottom: 2px solid rgb(26, 35, 126)
           transition: 0.2s ease-in all
-    
+
     .button__todo
       outline: none
       color: white
@@ -83,4 +83,3 @@ export default {
         background-color: rgba(26, 35, 126, 0.8)
 
 </style>
-

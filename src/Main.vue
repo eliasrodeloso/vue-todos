@@ -40,7 +40,7 @@ export default {
   h1, h2
     font-weight: normal
     text-transform: uppercase
-  
+
   .mdi-30px.mdi-set, .mdi-30px.mdi:before
     font-size: 30px
 </style>

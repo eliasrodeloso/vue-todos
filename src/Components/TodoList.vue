@@ -19,7 +19,7 @@ export default {
     ...mapGetters(['todos'])
   },
   watch: {
-    todos() {
+    todos () {
       localStorage.setItem(this.$localStorageKey, JSON.stringify(this.todos))
     }
   }
@@ -38,9 +38,8 @@ export default {
 
     &-enter-active, &-leave-active
       transition: all 0.3s ease
-    
+
     &-enter, &-leave-to
       opacity: 0
 
 </style>
-

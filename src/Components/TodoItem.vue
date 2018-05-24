@@ -1,41 +1,40 @@
 <template>
-  <div class="todo" >
+  <div class="todo">
     <div class="todo__status">
-      <span @click="markReady" 
-            :class="{'todo__option--completed': completed}" 
+      <span @click="markReady"
+            :class="{'todo__option--completed': completed}"
             class="todo__option todo__option--complete">
         <i class="mdi mdi-check-circle-outline mdi-30px"></i>
       </span>
     </div>
     <div class="todo__name " :class="{'todo__name--editing': editing}" @dblclick="editTodo">
-      <input 
-        type="text" 
-        class="todo__edit" 
-        v-if="editing" 
-        @keypress.enter.exact="saveEdit" 
+      <input
+        type="text"
+        class="todo__edit"
+        v-if="editing"
+        @keypress.enter.exact="saveEdit"
         @blur="saveEdit"
-        v-model="editingTodo" 
-        name="editTodo" 
+        v-model="editingTodo"
+        name="editTodo"
         id="editTodo"
       >
-      <span 
-        :class="{'todo--completed': completed}" 
-        
+      <span
+        :class="{'todo--completed': completed}"
         v-else
       >
           {{todo.name}}
       </span>
     </div>
     <div class="todo__options">
-      <span 
+      <span
         @click="editTodo"
-        :class="{'todo__option--disabled': completed || editing}" 
+        :class="{'todo__option--disabled': completed || editing}"
         class="todo__option todo__option--edit"
       >
         <i class="mdi mdi-pencil mdi-30px"></i>
       </span>
-      <span 
-        @click="removeTodo" 
+      <span
+        @click="removeTodo"
         class="todo__option todo__option--delete"
       >
         <i class="mdi mdi-delete mdi-30px"></i>
@@ -127,7 +126,7 @@ export default {
 
       &--editing
         padding: 0
-    
+
     &__options
       display: inline-block
       margin: 0 0 0 auto
@@ -138,24 +137,24 @@ export default {
       &:hover
         cursor: pointer
         transition: 0.3s linear all
-      
+
       &--delete
         color: rgb(199, 0, 0)
 
         &:hover
           color: rgb(155, 10, 15)
-      
+
       &--complete
         color: rgba(#2c3e50, 0.25)
 
       &--completed
         color: rgb(0, 122, 22)
-      
+
       &--disabled
         cursor: not-allowed
         pointer-events: none
         color: rgba(200, 200, 200, 0.8)
-    
+
     &__edit
       display: block
       border: 0
@@ -169,4 +168,3 @@ export default {
         outline: 2px solid #2c3e50
 
 </style>
-
